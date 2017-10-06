@@ -124,43 +124,6 @@
         
         </div></div>
     </div><!--//load_more_cont-->                    
-<script type="text/javascript">
-
-jQuery(document).ready(function($) {
-
-
-
-  $('#content_inside').infinitescroll({
-
- 
-
-    navSelector  : "div.load_more_text",            
-
-                   // selector for the paged navigation (it will be hidden)
-
-    nextSelector : "div.load_more_text a",    
-
-                   // selector for the NEXT link (to page 2)
-
-    itemSelector : "#content_inside .home_post_box",
-
-                   // selector for all items you'll retrieve
-
-    behavior: "twitter"
-
-  }); 
-
-  
-
-});
-
-
-
-
-
-
-
-</script>
     
     <?php wp_reset_query(); ?>                            
     

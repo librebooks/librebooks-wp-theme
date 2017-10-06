@@ -1,0 +1,31 @@
+#!/usr/local/bin/fontforge
+# A simple script to generate a menu subset. It outputs all unicode characters
+# in the word for "Arabic script", and also the ligatures needed for correct
+# shaping. After running "fontforge -lang=ff -script menusubset-kufi.ff Font.ttf", 
+# do "mv Font.menu.ttf Font.menu".
+Open($1)
+Select(0u20)
+SelectMore(0u54)
+SelectMore(0u68)
+SelectMore(0u61)
+SelectMore(0u62)
+SelectMore(0u69)
+SelectMore(0u74)
+SelectMore(0u28)
+SelectMore(0u29)
+SelectMore(0u0627)
+SelectMore(0u0644)
+SelectMore(0u0639)
+SelectMore(0u0631)
+SelectMore(0u0628)
+SelectMore(0u064a)
+SelectMore(0ufe8d) # alef isolated
+SelectMore(0ufedf) # lam initial
+SelectMore(0ufecc) # ain medial
+SelectMore(0ufeae) # reh final
+SelectMore(0ufe91) # beh initial
+SelectMore(0ufef2) # yeh final
+SelectInvert()
+Clear()
+# This has to end in .ttf or it will not include all the needed glyphs
+Generate($1 + ".menu.ttf")

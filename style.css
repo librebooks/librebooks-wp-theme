@@ -4,7 +4,7 @@ style.css art responsive
 Theme Name: Art Works Responsive WordPress Theme
 Theme URI: http://www.dessign.net/artworksresponsivetheme/
 Description: Art Works Responsive Theme for WordPress with infinite scroll is stylish, customizable, simple, and readable. Perfect for any Illustrator, Graphic Designer, Photographer and Creative Blogger. 
-Version: 2.0.1
+Version: 1.00
 Author: Marios Lublinski
 Author URI: http://www.dessign.net
 Tags: 3 column theme, clean, portfolio, blogger
@@ -85,54 +85,42 @@ a img.aligncenter {
 /* 
  * Droid Arabic Kufi (Arabic) http://www.google.com/webfonts/earlyaccess
  */
-@font-face {
-  font-family: 'Droid Arabic Kufi';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Regular.eot);
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),
-       local('Droid Arabic Kufi'), local('DroidKufi-Regular'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Regular.woff2) format('woff2'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Regular.woff) format('woff'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Droid Arabic Kufi';
-  font-style: normal;
-  font-weight: 700;
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Bold.eot);
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'),
-       local('DroidKufi-Bold'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Bold.woff2) format('woff2'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Bold.woff) format('woff'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabickufi/DroidKufi-Bold.ttf) format('truetype');
-}
+ @font-face {
+   font-family: 'Droid Arabic Kufi';
+   font-style: normal;
+   font-weight: 400;
+   src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Regular.eot?#iefix) format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Regular.woff) format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Regular.ttf) format('truetype');
+ }
+ @font-face {
+   font-family: 'Droid Arabic Kufi';
+   font-style: normal;
+   font-weight: 700;
+   src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Bold.eot?#iefix) format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Bold.woff) format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabickufi/v2/DroidKufi-Bold.ttf) format('truetype');
+ }
 
 /* 
  * Droid Arabic Naskh (Arabic) http://www.google.com/webfonts/earlyaccess
  */
-@font-face {
-  font-family: 'Droid Arabic Naskh';
-  font-style: normal;
-  font-weight: 400;
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Regular.eot);
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Regular.eot?#iefix) format('embedded-opentype'),
-       local('Droid Arabic Naskh'), local('DroidNaskh-Regular'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Regular.woff2) format('woff2'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Regular.woff) format('woff'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Droid Arabic Naskh';
-  font-style: normal;
-  font-weight: 700;
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Bold.eot);
-  src: url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Bold.eot?#iefix) format('embedded-opentype'),
-       local('DroidNaskh-Bold'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Bold.woff2) format('woff2'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Bold.woff) format('woff'),
-       url(//librebooks.org/wp/wp-content/fonts/droidarabicnaskh/DroidNaskh-Bold.ttf) format('truetype');
-}
+ @font-face {
+   font-family: 'Droid Arabic Naskh';
+   font-style: normal;
+   font-weight: 400;
+   src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Regular.eot?#iefix) format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Regular.woff) format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Regular.ttf) format('truetype');
+ }
+ @font-face {
+   font-family: 'Droid Arabic Naskh';
+   font-style: normal;
+   font-weight: 700;
+   src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Bold.eot?#iefix) format('embedded-opentype'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Bold.woff) format('woff'),
+        url(//themes.googleusercontent.com/static/fonts/earlyaccess/droidarabicnaskh/v2/DroidNaskh-Bold.ttf) format('truetype');
+ }
 
 /*
 CSS Social Icons

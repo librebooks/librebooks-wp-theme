@@ -10,25 +10,15 @@
   <!--[if lt IE 9]>
   <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
   <![endif]-->              
-  <link rel="stylesheet" href="/wp/wp-content/themes/ArtWorksResponsive/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-  <meta property="fb:app_id" content="401497659969383"/>  
   
-<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
-  <script type="text/javascript" src="/wp/wp-content/themes/ArtWorksResponsive/js/jquery-latest.js"></script>
-  <script async type="text/javascript" src="/wp/wp-content/themes/ArtWorksResponsive/js/scripts.js"></script>
-  <script async src="/wp/wp-content/themes/ArtWorksResponsive/js/jquery.infinitescroll.js" type="text/javascript" charset="utf-8"></script>
-
-
-
+  <?php if (get_theme_mod('librebooks_custom_header_code')) {
+  	echo get_theme_mod('librebooks_custom_header_code');
+  } ?>
+  
 </head>
 <body>
 
 <?php $shortname = "neue"; ?>
- <?php if(get_option($shortname.'_background_image_url','') != "") { ?>
-<style type="text/css">
-  body { background-image: url('<?php echo get_option($shortname.'_background_image_url',''); ?>'); }
-</style>
-<?php } ?>
 <div class="mainnav"></div>
 <div class="headerbg"></div>
 
@@ -77,35 +67,29 @@
 </div>
 
 
-		<div class="right">
-			<?php if(get_option($shortname.'_custom_logo_url','') != "") { ?>
-			  <a href="<?php bloginfo('url'); ?>"><img src="<?php echo stripslashes(stripslashes(get_option($shortname.'_custom_logo_url',''))); ?>" class="logo" /></a>
-			<?php } else { ?>
+<div class="right">
 	<div class="logo">
 	  <a class="logo" href="/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 	    <h1 class="logo">كتب عربية حرة</h1>
 	    <h2 class="logo">نحو معرفة حرة</h2>
 	  </a>
 	</div>
-			<?php } ?>                		
-		</div>
+</div>
 
 
-		<div class="left">
-		<div class="header_menu_con">
-<div class="header_menu" id="more">
+<div class="left">
+	<div class="header_menu_con">
+    <div class="header_menu" id="more">
 				
 				<?php wp_nav_menu('menu=header_menu&container=false&menu_id=&exclude=102,838, 19'); ?>
 				<ul class="more"><li><a href="#more"> المزيد </a> <?php wp_nav_menu('include=838, 19'); ?></li></ul>
 				<div class="clear"></div>
 		<!--//header_menu-->
 		</div>
-		</div><!--//left-->
-			
-			<div class="clear"></div>
-			
+	</div><!--//left-->
+	<div class="clear"></div>
 </div>
 
-		<div class="clear"></div>
+<div class="clear"></div>
 
-	</div><!--//header-->
+</div><!--//header-->

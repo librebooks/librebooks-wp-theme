@@ -1,5 +1,4 @@
 <?php
-include('settings.php');
 if (function_exists('add_theme_support')) {
 	add_theme_support('menus');
 }
@@ -23,16 +22,40 @@ function no_self_ping( &$links ) {
 }
 add_action( 'pre_ping', 'no_self_ping' );
 
-// Stop devicepx.js script.
-add_action('wp_enqueue_scripts', create_function(null, "wp_dequeue_script('devicepx');"), 20);
 
 
-
-// cdn jquery inclusion
-if (!is_admin()) {
-	wp_deregister_script('jquery');
-	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"), false);
-	wp_enqueue_script('jquery');
+add_action( 'wp_enqueue_scripts', 'librebooks_scripts' );
+function librebooks_scripts() {
+	
+	// Stop devicepx.js script.
+	add_action('wp_enqueue_scripts', create_function(null, "wp_dequeue_script('devicepx');"), 20);
+	
+	
+	
+	// cdn jquery inclusion
+	if (!is_admin()) {
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"), false);
+		wp_enqueue_script('jquery');
+	}
+	
+	// Styles
+	
+	wp_register_style('librebooks_main_style', get_bloginfo( 'stylesheet_url' ), array(), '1.00', 'all' );
+	wp_enqueue_style('librebooks_main_style');
+	
+	// scripts
+	
+	wp_register_script( 'jquery-latest', get_template_directory_uri() . '/js/jquery-latest.js', array( 'jquery' ), false, true );
+	wp_enqueue_script('jquery-latest');
+	wp_register_script( 'librebooks_main_scripts', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), false, true );
+	wp_enqueue_script('librebooks_main_scripts');
+	wp_register_script( 'jquery.infinitescroll', get_template_directory_uri() . '/js/jquery.infinitescroll.js', array( 'jquery' ), false, true );
+	wp_enqueue_script('jquery.infinitescroll');
+	wp_register_script( 'jquery.jetpack', WP_PLUGIN_URL . '/jetpack/modules/sharedaddy/sharing.js?ver=20121205', array( 'jquery' ), false, true );
+	wp_enqueue_script('jquery.jetpack');
+	
+	
 }
 
 // Remove share buttons under post.
@@ -46,6 +69,7 @@ add_action( 'loop_end', 'jptweak_remove_share' );
 if ( function_exists('register_sidebar') ) {
         register_sidebar(array(
                 'name'=>'Sidebar',
+								'id' => '1',
 		'before_widget' => '<div class="side_box">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="side_title">',
@@ -54,6 +78,7 @@ if ( function_exists('register_sidebar') ) {
         
         register_sidebar(array(
                 'name'=>'Footer Widget 1',
+								'id' => '2',
 		'before_widget' => '<div class="footer_box">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="footer_title">',
@@ -62,6 +87,7 @@ if ( function_exists('register_sidebar') ) {
         
         register_sidebar(array(
                 'name'=>'Footer Widget 2',
+								'id' => '3',
 		'before_widget' => '<div class="footer_box">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="footer_title">',
@@ -70,6 +96,7 @@ if ( function_exists('register_sidebar') ) {
         
         register_sidebar(array(
                 'name'=>'Footer Widget 3',
+								'id' => '4',
 		'before_widget' => '<div class="footer_box">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="footer_title">',
@@ -98,44 +125,7 @@ function ds_get_excerpt($num_chars) {
     else
       return implode(" ",$temp_parts);
 }
-// **** PRODUCTION - Template1 Search START ****
-class template1_search extends WP_Widget {
-	function template1_search() {
-		parent::WP_Widget(false, 'ArtWorks Search');
-	}
-	function widget($args, $instance) {
-                $args['search_title'] = $instance['search_title'];
-		t1_func_search($args);
-	}
-	function update($new_instance, $old_instance) {
-		return $new_instance;
-	}
-	function form($instance) {
-                $search_title = esc_attr($instance['search_title']);
-?>
-                <p><label for="<?php echo $this->get_field_id('search_title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('search_title'); ?>" name="<?php echo $this->get_field_name('search_title'); ?>" type="text" value="<?php echo $search_title; ?>" /></label></p>
-<?php
-	}
- }
-function t1_func_search($args = array(), $displayComments = TRUE, $interval = '') {
-	global $wpdb;
-        echo $args['before_widget']; 
-        
-        if($args['search_title'] != '')
-            echo $args['before_title'] . $args['search_title'] . $args['after_title']; ?>
-        <div class="t1_search_cont">
-            <form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-            <input type="text" name="s" id="s" />
-            <INPUT TYPE="image" SRC="<?php bloginfo('stylesheet_directory'); ?>/images/search-icon.jpg" class="t1_search_icon" BORDER="0" ALT="Submit Form">
-            </form>
-        </div><!--//t1_search_cont-->
-        <?php
-        echo $args['after_widget'];
-        wp_reset_query();
-        
-}
-register_widget('template1_search');  
-// **** PRODUCTION - Template1 Search END ****
+
 // EX POST CUSTOM FIELD START
 $prefix = 'ex_';
 $meta_box = array(
@@ -493,5 +483,43 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
+function librebooks_register_theme_customizer( $wp_customize ) {
+	$wp_customize->add_section( 'librebooks_custom_code' , array(
+		'title'      => __('Add Header/Footer Content','librebooks'),
+		'priority'   => 20,
+) );
+	/* Custom Content Section */
 
+$wp_customize->add_setting(
+		'librebooks_custom_header_code',
+		array(
+				'default'     => '',
+
+				'transport'   => 'postMessage',
+		)
+);
+
+		$wp_customize->add_control('librebooks_custom_header_code', array(
+		'label'      => __('Add Header Content Code', 'librebooks'),
+		'section'    => 'librebooks_custom_code',
+		'settings'   => 'librebooks_custom_header_code',
+		'type'       => 'textarea',
+));
+
+$wp_customize->add_setting(
+		'librebooks_custom_footer_code',
+		array(
+				'default'     => '',
+				'transport'   => 'postMessage',
+		)
+);
+
+		$wp_customize->add_control('librebooks_custom_footer_code', array(
+		'label'      => __('Add Footer Content Code', 'librebooks'),
+		'section'    => 'librebooks_custom_code',
+		'settings'   => 'librebooks_custom_footer_code',
+		'type'       => 'textarea',
+));
+}
+add_action( 'customize_register', 'librebooks_register_theme_customizer' );
 ?>
