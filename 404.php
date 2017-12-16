@@ -46,7 +46,7 @@
 <b> حسناً، أين تذهب الآن؟ </b>
 <ul> <li>عد للصفحة <a href="./">الرئيسية</a>.</li>
 <li>بلغ عن المشكلة عبر <a href="/contact-us/">البريد الإلكتروني</a>. </li>
-<li>تابع آخر نشاطات الموقع عبر <a href="/feed/"> خلاصات RSS</a>، <a href="https://www.facebook.com/LibreBooks">فيس بوك</a>، <a href="https://twitter.com/LibreBooksOrg">تويتر</a>.</li>
+<li>تابع آخر نشاطات الموقع عبر <a href="/feed/"> خلاصات RSS</a><?php if (get_theme_mod('librebooks_fb_page') != '') { ?>، <a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page'); ?>">فيس بوك</a><?php } ?><?php if (get_theme_mod('librebooks_twt_account') != '') { ?>، <a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>">تويتر</a><?php } ?>.</li>
 <li>استخدم خاصية <a href="#searchform">البحث</a>.</li>
 </ul>
 </div>
@@ -54,7 +54,7 @@
 
 
         </div><!--//post_right-->
-				
+
         <div class="post_left">
 
              <h1>404</h1>
