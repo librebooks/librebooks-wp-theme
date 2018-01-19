@@ -1207,7 +1207,8 @@ p.blog_tags { display:inline-block; font-size:12px; margin:0 !important; padding
 .side_box { margin-bottom: 5px; padding: 5px 10px; color: #000;}
 .side_box h3.side_title { margin:0; padding:10px 0 15px; font-size: 18px; color:#444;}
 .side_box ul { list-style-type: none; margin: 0; padding: 0;  }
-
+/* no content */
+.notfound_page.no_content .post_right { min-height: auto !important;}
 /* 404 */
 .notfound_page h2 { width:100%; display:inline-block; font-size:14px; text-align:center;  color:red; font-size:16px; padding:15px 0 5px;}
 
