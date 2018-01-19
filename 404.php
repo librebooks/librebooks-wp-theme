@@ -3,37 +3,6 @@
  * The template for displaying 404 pages (Not Found).
 **/
  get_header(); ?>
-<!--
-<div class="notfound_page">
-<div class="notfound_banner">
-<div class="home_post_box random">
-<li> </li>
-<li> </li>
-<li> </li>
-</div>
-
-<div class="home_post_box">
-<h1> 404 </h1>
-</div>
-
-<div class="home_post_box random">
-<li> </li>
-<li> </li>
-<li> </li>
-</div>
-</div>
-
-
-<h2>عذراً يبدو أن الصفحة التي تبحث عنها غير موجودة، يمكنك العودة إلى الرئيسية أو استخدام شريط البحث</h2>
-
-<form method="get" role="search" action="<?php bloginfo('url'); ?>/" id="searchform" title="ابحث في الموقع">
-
-	<div><label class="screen-reader-text" for="s">ابحث عن:</label>
-    <input name="s" type="text" size="40" placeholder="" />
-	<input type="submit" id="searchsubmit" value="بحث" />
-	</div>
-	</form>
-</div>-->
 
 <div id="single_cont">
    <div class="notfound_page">
