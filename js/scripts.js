@@ -438,3 +438,17 @@ if (jQuery('.post_right').height() > 450) {
   jQuery('.post_left').addClass('sticky');
   Stickyfill.add(jQuery('.post_left img'));
 }
+
+jQuery(document).ready( function($) {
+
+  /* Trigger Infinite Scroll */
+  $('#content_inside').infinitescroll({
+    navSelector  : "div.load_more_text",
+                   // selector for the paged navigation (it will be hidden)
+    nextSelector : "div.load_more_text a",
+                   // selector for the NEXT link (to page 2)
+    itemSelector : "#content_inside .home_post_box",
+                   // selector for all items you'll retrieve
+    behavior: "twitter"
+  });
+});

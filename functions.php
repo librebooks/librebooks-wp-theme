@@ -126,13 +126,13 @@ function librebooks_scripts() {
 	// scripts
 
 	wp_register_script( 'jquery-latest', get_template_directory_uri() . '/js/jquery-latest.js', array( 'jquery' ), false, true );
-	wp_enqueue_script('jquery-latest');
 	wp_register_script( 'librebooks_main_scripts', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), false, true );
-	wp_enqueue_script('librebooks_main_scripts');
 	wp_register_script( 'jquery.infinitescroll', get_template_directory_uri() . '/js/jquery.infinitescroll.js', array( 'jquery' ), false, true );
-	wp_enqueue_script('jquery.infinitescroll');
 	wp_register_script( 'jquery.jetpack', WP_PLUGIN_URL . '/jetpack/modules/sharedaddy/sharing.js?ver=20121205', array( 'jquery' ), false, true );
+	wp_enqueue_script('jquery-latest');
 	wp_enqueue_script('jquery.jetpack');
+	wp_enqueue_script('jquery.infinitescroll');
+	wp_enqueue_script('librebooks_main_scripts');
 }
 
 // Remove share buttons under post.

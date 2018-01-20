@@ -38,7 +38,7 @@
 	  <p><?php echo wp_count_terms( 'post_tag' ); ?>
 	  <span>وسم</span></p>
 	</li>
-	
+
 	<li class="license" >
 	  <a href="#license"><i style="font-size: 46px;" class="fa  fa-certificate fa-flip-horizontal"></i></a>
 	  <p><?php echo wp_count_terms( 'license' ); ?>
@@ -58,86 +58,31 @@
 </div>
 
       <div class="taxonomies">
-
-	<h2 id="author">المؤلف/المترجم:</h2>
-	<?php
-	//List terms in a given taxonomy
-	$taxonomy = 'writer';
-	$term_args=array(
-	  'hide_empty' => false,
-	  'orderby' => 'name',
-	  'order' => 'ASC'
-	);
-	$tax_terms = get_terms($taxonomy,$term_args);
-	?>
-	<ul class="tags blue">
-	<?php
-	foreach ($tax_terms as $tax_term) {
-	echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "عرض كتب المؤلف %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span>' . $tax_term->count . '</span></a></li>';
-	}
-	?>
-	</ul>
-
-	  <!--<p class="words"><?php wp_tag_cloud( array( 'taxonomy' => 'writer', format => 'list', 'smallest' => 15, 'largest' => 15, 'unit' => 'px' ) );?>--></p>
-
-	<h2 id="release">سنة الإصدار:</h2>
-	 <?php
-	//List terms in a given taxonomy
-	$taxonomy = 'release';
-	$term_args=array(
-	  'hide_empty' => false,
-	  'orderby' => 'name',
-	  'order' => 'ASC'
-	);
-	$tax_terms = get_terms($taxonomy,$term_args);
-	?>
-	<ul class="tags blue">
-	<?php
-	foreach ($tax_terms as $tax_term) {
-	echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "عرض الكتب الصادرة بتاريخ %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span>' . $tax_term->count . '</span></a></li>';
-	}
-	?>
-	</ul>
-
-	<h2 id="license">الترخيص:</h2>
-	  <?php
-	//List terms in a given taxonomy
-	$taxonomy = 'license';
-	$term_args=array(
-	  'hide_empty' => false,
-	  'orderby' => 'name',
-	  'order' => 'ASC'
-	);
-	$tax_terms = get_terms($taxonomy,$term_args);
-	?>
-	<ul class="tags blue">
-	<?php
-	foreach ($tax_terms as $tax_term) {
-	echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "عرض الكتب تحت ترخيص %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span>' . $tax_term->count . '</span></a></li>';
-	}
-	?>
-	</ul>
-
-	<h2 id="tags">الوسوم:</h2>
-<?php
-	//List terms in a given taxonomy
-	$taxonomy = 'post_tag';
-	$term_args=array(
-	  'hide_empty' => false,
-	  'orderby' => 'name',
-	  'order' => 'ASC'
-	);
-	$tax_terms = get_terms($taxonomy,$term_args);
-	?>
-	<ul class="tags blue">
-	<?php
-	foreach ($tax_terms as $tax_term) {
-	echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "View all vendors in the %s industry" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span>' . $tax_term->count . '</span></a></li>';
-	}
-	?>
-	</ul>
-	  <!--<p class="words"><?php wp_tag_cloud('smallest=15&largest=15&number=25&orderby=name&unit=px'); ?></p>-->
-
+        <?php if (get_theme_mod('librebooks_taxonomies_to_show')) {
+          $taxonomies = get_theme_mod('librebooks_taxonomies_to_show');
+          foreach ($taxonomies as $taxonomy) {
+            $taxonomy = get_taxonomy($taxonomy);
+            ?>
+              <h2 id="<?php echo $taxonomy->name; ?>"><?php echo $taxonomy->labels->name; ?>:</h2>
+            <?php
+            $term_args=array(
+              'hide_empty' => false,
+              'orderby' => 'name',
+              'order' => 'ASC'
+            );
+            $tax_terms = get_terms($taxonomy,$term_args);
+            if (is_array($tax_terms)) {
+            ?>
+            <ul class="tags blue">
+            <?php
+            foreach ($tax_terms as $tax_term) {
+            echo '<li>' . '<a href="' . esc_attr(get_term_link($tax_term, $taxonomy)) . '" title="' . sprintf( __( "عرض كتب المؤلف %s" ), $tax_term->name ) . '" ' . '>' . $tax_term->name . '<span>' . $tax_term->count . '</span></a></li>';
+            }
+            ?>
+          </ul> <?php
+        }
+          }
+        } ?>
       </div><!--//taxonomies-->
     </div><!--//single_inside_content-->
   </div><!--//single_left-->
@@ -161,5 +106,5 @@ $(window).resize(function(){
 
 });});
 </script>
-	
+
 <?php get_footer(); ?>
