@@ -102,8 +102,12 @@
 	<div class="header_menu_con">
     <div class="header_menu" id="more">
 
-				<?php wp_nav_menu('menu=header_menu&container=false&menu_id=&exclude=102,838, 19'); ?>
-				<ul class="more"><li><a href="#more"> المزيد </a> <?php wp_nav_menu('include=838, 19'); ?></li></ul>
+				<?php wp_nav_menu(
+          array(
+            'container' => false,
+            'walker' => new WPDocs_Walker_Nav_Menu()
+          )
+        ); ?>
 				<div class="clear"></div>
 		<!--//header_menu-->
 		</div>

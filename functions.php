@@ -430,4 +430,137 @@ function new_excerpt_more( $more ) {
 	return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+/**
+ * Custom walker class.
+ */
+class WPDocs_Walker_Nav_Menu extends Walker_Nav_Menu {
+
+		public $break_point  = null;
+		public $displayed = 0;
+		public $close_more = null;
+
+    /**
+     * Starts the list before the elements are added.
+     *
+     * Adds classes to the unordered list sub-menus.
+     *
+     * @param string $output Passed by reference. Used to append additional content.
+     * @param int    $depth  Depth of menu item. Used for padding.
+     * @param array  $args   An array of arguments. @see wp_nav_menu()
+     */
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+
+        // Depth-dependent classes.
+        $indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
+        $display_depth = ( $depth + 1); // because it counts the first submenu as 0
+        $classes = array(
+            'sub-menu',
+            ( $display_depth % 2  ? 'menu-odd' : 'menu-even' ),
+            ( $display_depth >=2 ? 'sub-sub-menu' : '' ),
+            'menu-depth-' . $display_depth
+        );
+        $class_names = implode( ' ', $classes );
+
+        // Build HTML for output.
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
+
+    /**
+     * Start the element output.
+     *
+     * Adds main/sub-classes to the list items and links.
+     *
+     * @param string $output Passed by reference. Used to append additional content.
+     * @param object $item   Menu item data object.
+     * @param int    $depth  Depth of menu item. Used for padding.
+     * @param array  $args   An array of arguments. @see wp_nav_menu()
+     * @param int    $id     Current item ID.
+     */
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        global $wp_query;
+
+				if( !isset( $this->break_point ) ) {
+		        $menu_elements = wp_get_nav_menu_items( $args->menu );
+		        $top_level_elements = 0;
+
+		        foreach( $menu_elements as $el ) {
+		            if( $el->menu_item_parent === '0' ) {
+		                $top_level_elements++;
+		            }
+		        }
+		        $this->break_point = 3;
+		     }
+        $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
+
+        // Depth-dependent classes.
+        $depth_classes = array(
+            ( $depth == 0 ? 'main-menu-item' : 'sub-menu-item' ),
+            ( $depth >=2 ? 'sub-sub-menu-item' : '' ),
+            ( $depth % 2 ? 'menu-item-odd' : 'menu-item-even' ),
+            'menu-item-depth-' . $depth
+        );
+        $depth_class_names = esc_attr( implode( ' ', $depth_classes ) );
+
+        // Passed classes.
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $class_names = esc_attr( implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) ) );
+
+        // Build HTML.
+				if( $this->break_point == $this->displayed ) {
+					$output .= $indent . '</ul><ul class="more"><li><a href="#more"> المزيد </a><ul class="menu"><li id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . ' ' . $class_names . '">';
+				} else {
+					$output .= $indent . '<li id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . ' ' . $class_names . '">';
+				}
+
+        // Link attributes.
+        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
+        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
+        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
+        $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+        $attributes .= ' class="menu-link ' . ( $depth > 0 ? 'sub-menu-link' : 'main-menu-link' ) . '"';
+
+        // Build HTML output and pass through the proper filter.
+        $item_output = sprintf( '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s',
+            $args->before,
+            $attributes,
+            $args->link_before,
+            apply_filters( 'the_title', $item->title, $item->ID ),
+            $args->link_after,
+            $args->after
+        );
+				if( $item->menu_item_parent === '0' ) {
+				    $this->displayed++;
+				}
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+    }
+		function end_el( &$output, $item, $depth = 0, $args = array() ) {
+    if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+        $t = '';
+        $n = '';
+    } else {
+        $t = "\t";
+        $n = "\n";
+    }
+		$closemenu = false;
+		if (!$this->close_more) {
+			$menu_elements = wp_get_nav_menu_items( $args->menu );
+			$top_level_elements = 0;
+
+			foreach( $menu_elements as $el ) {
+					if( $el->menu_item_parent === '0' ) {
+							$top_level_elements++;
+					}
+			}
+			if ($this->displayed == $top_level_elements) {
+				$closemenu = true;
+			}
+		}
+		if ($closemenu) {
+			$output .= "</li>{$n}</li></ul>";
+		} else {
+			$output .= "</li>{$n}";
+		}
+}
+}
 ?>
