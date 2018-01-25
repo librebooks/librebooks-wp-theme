@@ -30,10 +30,6 @@
 			<div class="blog_page">
 
 				<?php
-				global $wp_query;
-
-		    $args = array_merge( $wp_query->query, array( 'posts_per_page' => 12 ) );
-		    query_posts( $args );
 		    $x = 0;
 				while ( have_posts() ) : the_post(); ?>
   				<div>
@@ -50,11 +46,6 @@
 			<div id="content">
 				<div id="content_inside">
 					<?php
-					/* Start the Loop */
-					global $wp_query;
-
-			    $args = array_merge( $wp_query->query, array( 'posts_per_page' => 12 ) );
-			    query_posts( $args );
 			    get_template_part('list-content');
 					?>
 		    </div><!--//content_inside-->

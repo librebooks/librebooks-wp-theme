@@ -19,12 +19,8 @@
 <div id="content">
   <div id="content_inside">
     <?php
-    global $wp_query;
-
-    $args = array_merge( $wp_query->query, array( 'posts_per_page' => 12 ) );
-    query_posts( $args );
     if ( have_posts() ) :
-    get_template_part('list-content');
+      get_template_part('list-content');
     else :
       get_template_part('content-none');
     endif;
