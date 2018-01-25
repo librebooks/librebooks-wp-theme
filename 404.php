@@ -9,7 +9,7 @@
      <div class="post_sec">
         <div class="post_right">
 
-          <h1 class="single_title">الصفحة غير موجودة</h1>
+          <h1 class="single_title"><?php echo __('الصفحة غير موجودة', 'LibreBooks'); ?></h1>
           <div class="article">
              <?php echo sprintf(__('<p>هممم، يبدو أن الصفحة التي تريدها غير موجودة، قد تكون حُذفت أو الرابط الذي اتبعته غير سليم.</p>
           <br />
