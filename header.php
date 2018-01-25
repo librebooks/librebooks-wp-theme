@@ -31,7 +31,7 @@
 </head>
 <body <?php body_class('body_width'); ?>>
 
-<?php $shortname = "neue"; ?>
+
 <div class="mainnav" id="sharebox">
   <div class="librebooks_container">
     <div id="scroll_to_home" class="homesb">
@@ -53,33 +53,33 @@
 
 
     <span class="left_topbar">
-    <?php if (get_theme_mod('librebooks_enable_taxonomies_menu')) { ?>
-    <?php $taxonomies_link = ''; if (get_theme_mod('librebooks_taxonomies_link')) { $taxonomies_link = get_theme_mod('librebooks_taxonomies_link'); } ?>
-    <ul id="menu">
-      <li><a href="<?php echo $taxonomies_link;?>"><?php echo __('التصنيفات', 'LibreBooks'); ?></a>
-        <ul>
-          <li><a href="<?php echo $taxonomies_link; ?>"><?php echo __('كل التصنيفات', 'LibreBooks'); ?></a></li>
-          <?php
-          if ( get_theme_mod('librebooks_taxonomies_to_show') ) {
-            $taxonomies = get_theme_mod('librebooks_taxonomies_to_show');
-            foreach ( $taxonomies  as $taxonomy ) {
-              $taxonomy = get_taxonomy($taxonomy);
-              echo '<li><a href="'.$taxonomies_link.'/#'.$taxonomy->name.'">' . $taxonomy->labels->name . '</a></li>';
-            }
-          } ?>
-        </ul>
-      </li>
-    </ul>
-    <?php } ?>
+      <?php if (get_theme_mod('librebooks_enable_taxonomies_menu')) { ?>
+      <?php $taxonomies_link = ''; if (get_theme_mod('librebooks_taxonomies_link')) { $taxonomies_link = get_theme_mod('librebooks_taxonomies_link'); } ?>
+      <ul id="menu">
+        <li><a href="<?php echo $taxonomies_link;?>"><?php echo __('التصنيفات', 'LibreBooks'); ?></a>
+          <ul>
+            <li><a href="<?php echo $taxonomies_link; ?>"><?php echo __('كل التصنيفات', 'LibreBooks'); ?></a></li>
+            <?php
+            if ( get_theme_mod('librebooks_taxonomies_to_show') ) {
+              $taxonomies = get_theme_mod('librebooks_taxonomies_to_show');
+              foreach ( $taxonomies  as $taxonomy ) {
+                $taxonomy = get_taxonomy($taxonomy);
+                echo '<li><a href="'.$taxonomies_link.'/#'.$taxonomy->name.'">' . $taxonomy->labels->name . '</a></li>';
+              }
+            } ?>
+          </ul>
+        </li>
+      </ul>
+      <?php } ?>
 
-    <span class="left_topbar">
-    <?php if (get_theme_mod('librebooks_twt_account') != '') { ?><a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="sb min twitter small" title="تويتر" target="blank"></a><?php } ?>
-    <?php if (get_theme_mod('librebooks_fb_page') != '') { ?><a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page');?>" class="sb min facebook small" title="فيس بوك" target="blank"></a><?php } ?>
-    <a href="<?php bloginfo('url'); ?>/feed/" class="sb min rss small" title="الخلاصات"></a>
-    <form method="get" role="search" action="<?php bloginfo('url'); ?>/" id="search" title="<?php echo __('ابحث في الموقع', 'LibreBooks'); ?>">
-      <input name="s" type="text" size="40" placeholder="" />
-    </form>
-    </span>
+      <span class="left_topbar">
+        <?php if (get_theme_mod('librebooks_twt_account') != '') { ?><a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="sb min twitter small" title="تويتر" target="blank"></a><?php } ?>
+        <?php if (get_theme_mod('librebooks_fb_page') != '') { ?><a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page');?>" class="sb min facebook small" title="فيس بوك" target="blank"></a><?php } ?>
+        <a href="<?php bloginfo('url'); ?>/feed/" class="sb min rss small" title="الخلاصات"></a>
+        <form method="get" role="search" action="<?php bloginfo('url'); ?>/" id="search" title="<?php echo __('ابحث في الموقع', 'LibreBooks'); ?>">
+          <input name="s" type="text" size="40" placeholder="" />
+        </form>
+      </span>
 
     </span>
 

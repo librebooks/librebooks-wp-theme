@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-<?php $shortname = "neue"; ?>
 
 <div class="mnote">
 	<?php if (get_theme_mod('librebooks_front_page_welcome_message') != '') { echo get_theme_mod('librebooks_front_page_welcome_message'); } else {?>موقع <b>كتب عربية حرة</b> هو منصة للكتب الحرة باللغة العربية، يهدف الموقع لإثراء المحتوى العربي والتعريف بالكتب والثقافة الحرة وأهميتها عربياً، بالإضافة إلى التشجيع على إنتاج المزيد من <a href="//librebooks.org/free-books/">الكتب الحرة</a> ذات جودة عالية. الموقع مفتوح لكافة المجالات المتنوعة ويمكن نشر أي كتاب طالما كان حراً<span style="font-family:'Droid Arabic Kufi';font-weight:bold;font-size:10px;">.<?php } ?></span>
