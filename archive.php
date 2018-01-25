@@ -32,15 +32,7 @@
   </div><!--//content_inside-->
 
   <div class="clear"></div>
-  <div class="load_more_cont">
-  <div align="center">
-    <div class="load_more_text down_but">
-    <?php
-    next_posts_link(__('المزيد', 'LibreBooks'));
-    ?>
-    </div>
-  </div>
-  </div><!--//load_more_cont-->
+  <?php librebooks_load_more(); ?>
   <?php wp_reset_query(); ?>
 </div><!--//content-->
 

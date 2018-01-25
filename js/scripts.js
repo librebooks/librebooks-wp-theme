@@ -451,4 +451,28 @@ jQuery(document).ready( function($) {
                    // selector for all items you'll retrieve
     behavior: "twitter"
   });
+
+  /* Taxonomies Page Script */
+  $(".taxonomies_page .site-tax-stats li:nth-child(3n)").addClass("no-separate");
+  $('.taxonomies_page a').smoothScroll({ speed: 800});
+  $(window).resize(function(){
+    if ($('.taxonomies_page .taxonomies ul').width() == 300) {
+      if ($('.taxonomies_page .taxonomies a').width() > 200) {
+          $(this).css('padding', '5px 5px');
+          $('.tags span').css('top', '0');
+          $('.tags span').css('bottom', '0');
+          $('.tags span').css('left', '0');
+    } }
+
+  });
+
+  /* Sidebar */
+  $('#sidebar .side_box h3').click( function() {
+	if ($(this).parent().find('ul').css("display") == "none") {
+	$(this).parent().find('ul').css("display","block");
+	}
+	else {
+	$(this).parent().find('ul').css("display","none");
+	}
+});
 });

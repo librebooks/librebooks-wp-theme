@@ -563,4 +563,18 @@ class WPDocs_Walker_Nav_Menu extends Walker_Nav_Menu {
 		}
 }
 }
+
+if (!function_exists('librebooks_load_more')) {
+	function librebooks_load_more() {
+		?>
+		<div class="load_more_cont">
+	    <div align="center">
+				<div class="load_more_text down_but">
+	    		<?php next_posts_link(__('المزيد', 'LibreBooks')); ?>
+	      </div>
+			</div>
+	  </div>
+		<?php
+	}
+}
 ?>
