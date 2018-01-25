@@ -96,7 +96,6 @@
         </a>
       </div>
     </div>
-    <?php if ( has_nav_menu( 'primary' ) ) : ?>
       <div class="left">
         <div class="header_menu_con">
           <div class="header_menu" id="more">
@@ -112,7 +111,6 @@
         </div><!--//left-->
       <div class="clear"></div>
       </div>
-    <?php endif; ?>
 
     <div class="clear"></div>
 
