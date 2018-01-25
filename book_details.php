@@ -58,6 +58,7 @@
             ?>
               <h2 id="<?php echo $taxonomy->name; ?>"><?php echo $taxonomy->labels->name; ?>:</h2>
             <?php
+            $taxonomy = $taxonomy->name;
             $term_args=array(
               'hide_empty' => false,
               'orderby' => 'name',
