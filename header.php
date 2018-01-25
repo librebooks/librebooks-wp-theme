@@ -33,91 +33,89 @@
 
 <?php $shortname = "neue"; ?>
 <div class="mainnav" id="sharebox">
-<div class="librebooks_container">
-<div id="scroll_to_home" class="homesb">
-<a href="<?php bloginfo('url'); ?>" title="<?php echo __('العودة للصفحة الرئيسية', 'LibreBooks'); ?>">𝍖</a>
-</div>
-<span class="snetworks">
-      <?php if (get_theme_mod('librebooks_fb_id') != '' && get_theme_mod('librebooks_fb_page') != '') { ?>
-      <span class="face">
-         <div class="fb-like" data-href="https://facebook.com/<?php echo get_theme_mod('librebooks_fb_page'); ?>" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></div>
-      </span>
-    <?php } ?>
-    <?php if (get_theme_mod('librebooks_twt_account') != '') { ?>
-      <span class="twitter">
-         <a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="twitter-follow-button" data-show-count="true" data-lang="en" >Tweet</a>
-      </span>
-    <?php } ?>
-</span>
+  <div class="librebooks_container">
+    <div id="scroll_to_home" class="homesb">
+    <a href="<?php bloginfo('url'); ?>" title="<?php echo __('العودة للصفحة الرئيسية', 'LibreBooks'); ?>">𝍖</a>
+    </div>
+    <span class="snetworks">
+          <?php if (get_theme_mod('librebooks_fb_id') != '' && get_theme_mod('librebooks_fb_page') != '') { ?>
+          <span class="face">
+             <div class="fb-like" data-href="https://facebook.com/<?php echo get_theme_mod('librebooks_fb_page'); ?>" data-send="false" data-layout="button_count" data-width="70" data-show-faces="false"></div>
+          </span>
+        <?php } ?>
+        <?php if (get_theme_mod('librebooks_twt_account') != '') { ?>
+          <span class="twitter">
+             <a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="twitter-follow-button" data-show-count="true" data-lang="en" >Tweet</a>
+          </span>
+        <?php } ?>
+    </span>
 
 
 
-<span class="left_topbar">
-<?php if (get_theme_mod('librebooks_enable_taxonomies_menu')) { ?>
-<?php $taxonomies_link = ''; if (get_theme_mod('librebooks_taxonomies_link')) { $taxonomies_link = get_theme_mod('librebooks_taxonomies_link'); } ?>
-<ul id="menu">
-  <li><a href="<?php echo $taxonomies_link;?>"><?php echo __('التصنيفات', 'LibreBooks'); ?></a>
-    <ul>
-      <li><a href="<?php echo $taxonomies_link; ?>"><?php echo __('كل التصنيفات', 'LibreBooks'); ?></a></li>
-      <?php
-      if ( get_theme_mod('librebooks_taxonomies_to_show') ) {
-        $taxonomies = get_theme_mod('librebooks_taxonomies_to_show');
-        foreach ( $taxonomies  as $taxonomy ) {
-          $taxonomy = get_taxonomy($taxonomy);
-          echo '<li><a href="'.$taxonomies_link.'/#'.$taxonomy->name.'">' . $taxonomy->labels->name . '</a></li>';
-        }
-      } ?>
+    <span class="left_topbar">
+    <?php if (get_theme_mod('librebooks_enable_taxonomies_menu')) { ?>
+    <?php $taxonomies_link = ''; if (get_theme_mod('librebooks_taxonomies_link')) { $taxonomies_link = get_theme_mod('librebooks_taxonomies_link'); } ?>
+    <ul id="menu">
+      <li><a href="<?php echo $taxonomies_link;?>"><?php echo __('التصنيفات', 'LibreBooks'); ?></a>
+        <ul>
+          <li><a href="<?php echo $taxonomies_link; ?>"><?php echo __('كل التصنيفات', 'LibreBooks'); ?></a></li>
+          <?php
+          if ( get_theme_mod('librebooks_taxonomies_to_show') ) {
+            $taxonomies = get_theme_mod('librebooks_taxonomies_to_show');
+            foreach ( $taxonomies  as $taxonomy ) {
+              $taxonomy = get_taxonomy($taxonomy);
+              echo '<li><a href="'.$taxonomies_link.'/#'.$taxonomy->name.'">' . $taxonomy->labels->name . '</a></li>';
+            }
+          } ?>
+        </ul>
+      </li>
     </ul>
-  </li>
-</ul>
-<?php } ?>
+    <?php } ?>
 
-<span class="left_topbar">
-<?php if (get_theme_mod('librebooks_twt_account') != '') { ?><a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="sb min twitter small" title="تويتر" target="blank"></a><?php } ?>
-<?php if (get_theme_mod('librebooks_fb_page') != '') { ?><a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page');?>" class="sb min facebook small" title="فيس بوك" target="blank"></a><?php } ?>
-<a href="<?php bloginfo('url'); ?>/feed/" class="sb min rss small" title="الخلاصات"></a>
-<form method="get" role="search" action="<?php bloginfo('url'); ?>/" id="search" title="<?php echo __('ابحث في الموقع', 'LibreBooks'); ?>">
-  <input name="s" type="text" size="40" placeholder="" />
-</form>
-</span>
+    <span class="left_topbar">
+    <?php if (get_theme_mod('librebooks_twt_account') != '') { ?><a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="sb min twitter small" title="تويتر" target="blank"></a><?php } ?>
+    <?php if (get_theme_mod('librebooks_fb_page') != '') { ?><a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page');?>" class="sb min facebook small" title="فيس بوك" target="blank"></a><?php } ?>
+    <a href="<?php bloginfo('url'); ?>/feed/" class="sb min rss small" title="الخلاصات"></a>
+    <form method="get" role="search" action="<?php bloginfo('url'); ?>/" id="search" title="<?php echo __('ابحث في الموقع', 'LibreBooks'); ?>">
+      <input name="s" type="text" size="40" placeholder="" />
+    </form>
+    </span>
 
-</span>
+    </span>
 
-</div>
+  </div>
 </div>
 <div id="header" class="headerbg">
-<div class="librebooks_container">
+  <div class="librebooks_container">
 
+    <div class="right">
+      <div class="logo">
+        <a class="logo" href="<?php bloginfo('url'); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+          <h1 class="logo"><?php echo bloginfo('name'); ?></h1>
+          <h2 class="logo"><?php echo bloginfo('description'); ?></h2>
+        </a>
+      </div>
+    </div>
 
-<div class="right">
-<div class="logo">
-  <a class="logo" href="<?php bloginfo('url'); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-    <h1 class="logo"><?php echo bloginfo('name'); ?></h1>
-    <h2 class="logo"><?php echo bloginfo('description'); ?></h2>
-  </a>
-</div>
-</div>
+    <div class="left">
+      <div class="header_menu_con">
+        <div class="header_menu" id="more">
 
+            <?php wp_nav_menu(
+              array(
+                'container' => false,
+                'walker' => new WPDocs_Walker_Nav_Menu()
+              )
+            ); ?>
+            <div class="clear"></div>
+        <!--//header_menu-->
+        </div>
+      </div><!--//left-->
+    <div class="clear"></div>
+    </div>
 
-<div class="left">
-<div class="header_menu_con">
-  <div class="header_menu" id="more">
+    <div class="clear"></div>
 
-      <?php wp_nav_menu(
-        array(
-          'container' => false,
-          'walker' => new WPDocs_Walker_Nav_Menu()
-        )
-      ); ?>
-      <div class="clear"></div>
-  <!--//header_menu-->
-  </div>
-</div><!--//left-->
-<div class="clear"></div>
-</div>
-
-<div class="clear"></div>
-
-</div><!--//header-->
+  </div><!--//header-->
 </div>
 <div id="main_container">
