@@ -96,23 +96,23 @@
         </a>
       </div>
     </div>
-
-    <div class="left">
-      <div class="header_menu_con">
-        <div class="header_menu" id="more">
-
-            <?php wp_nav_menu(
-              array(
-                'container' => false,
-                'walker' => new WPDocs_Walker_Nav_Menu()
-              )
-            ); ?>
-            <div class="clear"></div>
-        <!--//header_menu-->
-        </div>
-      </div><!--//left-->
-    <div class="clear"></div>
-    </div>
+    <?php if ( has_nav_menu( 'primary' ) ) : ?>
+      <div class="left">
+        <div class="header_menu_con">
+          <div class="header_menu" id="more">
+              <?php wp_nav_menu(
+                array(
+                  'container' => false,
+                  'walker' => new WPDocs_Walker_Nav_Menu()
+                )
+              ); ?>
+              <div class="clear"></div>
+          <!--//header_menu-->
+          </div>
+        </div><!--//left-->
+      <div class="clear"></div>
+      </div>
+    <?php endif; ?>
 
     <div class="clear"></div>
 
