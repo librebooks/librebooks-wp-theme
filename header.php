@@ -54,7 +54,7 @@
 
 
 
-<span style="display: inline-block; float:left;">
+<span class="left_topbar">
 <?php if (get_theme_mod('librebooks_enable_taxonomies_menu')) { ?>
   <?php $taxonomies_link = ''; if (get_theme_mod('librebooks_taxonomies_link')) { $taxonomies_link = get_theme_mod('librebooks_taxonomies_link'); } ?>
   <ul id="menu">
@@ -74,7 +74,7 @@
   </ul>
 <?php } ?>
 
-<span style="display: inline-block; float:left;">
+<span class="left_topbar">
   <?php if (get_theme_mod('librebooks_twt_account') != '') { ?><a href="https://twitter.com/<?php echo get_theme_mod('librebooks_twt_account'); ?>" class="sb min twitter small" title="تويتر" target="blank"></a><?php } ?>
   <?php if (get_theme_mod('librebooks_fb_page') != '') { ?><a href="https://www.facebook.com/<?php echo get_theme_mod('librebooks_fb_page');?>" class="sb min facebook small" title="فيس بوك" target="blank"></a><?php } ?>
   <a href="<?php bloginfo('url'); ?>/feed/" class="sb min rss small" title="الخلاصات"></a>

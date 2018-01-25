@@ -65,9 +65,11 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 				<div class="post_right">
 				  <div class="single_inside_content">
 				    <div class="article"><?php the_content(); ?></div>
+						<?php if ($fields_records['summary'] !== '') { ?>
 				      <div class="summary"><h2><?php echo __('الخلاصة عن كتاب ', 'LibreBooks'); ?><?php the_title();?>.</h2>
 				      <p><?php echo $fields_records['summary'];?></p>
 				      </div>
+						<?php } ?>
 				  </div><!--//single_inside_content-->
 				</div><!--//post_right-->
 
@@ -92,7 +94,7 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 			      </div>
 
 		        <div class="tags_box">
-							 <h2><?php echo __('الوسوم: ', 'LibreBooks'); ?></h2><?php the_tags( "", "، ", $after ); ?>
+							 <h2><?php echo __('الوسوم: ', 'LibreBooks'); ?></h2><?php the_tags( "", "، " ); ?>
 						</div>
 		      </div><!--//book_box_right-->
 		      <div class="or-spacer"><div class="mask"></div></div>
@@ -109,7 +111,7 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 		<div class="book_details_footer">
 			<div class="ex-release">
 				<p><?php echo __(' إصدارات سابقة ', 'LibreBooks'); ?></p>
-				<?php if ($release_url[0]) { ?>
+				<?php if (($release_url !== '') && $release_url[0]) { ?>
 					<ul>
 						<?php foreach( $release_url as $index => $url ) { ?>
 							<li><a href="<?php echo $url; ?>" ><?php echo $release_no[$index]; ?></a></li>
@@ -123,8 +125,8 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 			</div>
 		</div>
 		<div class="books-nav">
-			<p class="pre-post"><?php previous_post(__('&laquo; %', 'الكتاب السابق: ', 'LibreBooks'), 'yes')?></p>
-			<p class="ne-post"><?php next_post(__('% &raquo;', 'الكتاب التالي: ', 'LibreBooks'), 'yes') ?> </p>
+			<p class="pre-post"><?php previous_post_link(__('&laquo; الكتاب السابق: %link', 'LibreBooks'))?></p>
+			<p class="ne-post"><?php next_post_link(__('&raquo; الكتاب التالي: %link', 'LibreBooks')) ?> </p>
 		</div>
 
 

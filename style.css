@@ -1850,3 +1850,9 @@ div.sharedaddy div.sd-block { border-top: none !important; padding: 0 !important
 div.sharedaddy .sd-content li { margin: -4px 8px 5px 0px !important; }
 li.share-twitter { margin-right: 0 !important; }
 H3#reply-title.comment-reply-title { font-weight: normal !important; font-size: 17px; margin: 15px 0;}
+
+/* Left Topbar Section */
+.left_topbar {
+  display: inline-block;
+  float:left;
+}
