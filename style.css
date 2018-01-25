@@ -338,15 +338,19 @@ text-align: right;
     width: 100%;
     background: #333;
     position: fixed;
-    height: 40px;
+    top: 0;
+    height: 34px;
+    padding-top: 6px;
     z-index: 999;
 }
+
+.admin-bar .mainnav {
+  top: 32px;
+}
 .headerbg {
-    position: absolute;
     width: 100%;
     background: rgba(235, 235, 235);/* The Fallback */
     background: rgba(235, 235, 235, 0.7);
-    height: 195px;
     border-bottom: 8px solid rgb(232, 232, 232);
     z-index: -10;
 }
@@ -361,6 +365,7 @@ text-align: right;
     z-index: 999999;
     position: fixed;
 }
+.librebooks_container { width: 980px; margin: auto; position: relative;}
 #main_container { width: 980px; margin: auto; padding: 1px 30px 1px 30px;}
 ::selection {
 	background: #c9dee3;
@@ -389,10 +394,9 @@ aside, nav, article, figure {
 
 /* Header */
 #sharebox {
-    width: 970px;
     border: medium none;
     text-align: center;
-    height: 40px;
+    height: 34px;
     text-decoration: none;
     padding-right: 4px;
     margin: 0 auto;
@@ -517,7 +521,7 @@ span.twitter { height: 19px; display: inline-block; float: left; }
 
 .fixed_top_bar { position:fixed; width:100%; height:35px; background-color: rgba(153, 153, 153, 1); color: rgba(153, 153, 153, 1); z-index:1;}
 .home_icon img { height:40px; width:auto; float:right;}
-#header { padding: 6px 0 78px 0;}
+#header { margin: 6px 0 47px 0; padding-bottom: 23px; }
 #header .right { width: 350px; }
 #header .right img { max-width: 350px; height: inherit; }
 #header .left { width: 600px; }
@@ -1325,6 +1329,9 @@ ul.related_post li img {
 
 /* for tablet landscape */
 @media only screen and (max-width: 981px) {
+.librebooks_container {
+  width: 100%;
+}
 .desktop_clear { clear: none; }
 .tablet_clear { clear: both; }
 .blog_page p.blog_desc { width:475px !important;}
@@ -1336,7 +1343,7 @@ ul.related_post li img {
 #header .right { width: 350px; }
 #header .right img { max-width: 350px; height: inherit; }
 #header .left { width: 450px; margin:5px 0; }
-#sharebox { width:798px;}
+
 .post_sec {width:808px;}
 
 .book_details { width: 796px; margin: 180px 3px 52px 0px; padding: 20px 5px; display: inline-block; }
@@ -1464,7 +1471,7 @@ max-width:400px;
 .header_menu ul li a { padding:5px;}
 .logo {font-size:14px; margin-top: 7px;}
 .logo h2 { font-size: 20px; }
-#sharebox { width:702px;}
+
 span.twitter {margin-right:-25px;}
 #search { width: 234px; }
 #search input[type="text"] { width: 0; position: absolute; left:0px;}
@@ -1538,6 +1545,12 @@ ul.related_post li { margin: 10px 10px 10px 34px !important; }
 .site-tax-stats li.first_last_year p { font-size: 2.1rem; }
 }
 
+@media (max-width: 782px) {
+  .admin-bar .mainnav {
+    top: 42px;
+  }
+}
+
 @media screen and (max-width: 769px) {
 .notfound_page input[type="text"] { width:250px !important; margin: 10px 0 5px;}
 .notfound_page .book_details { height:110px; width:290px; margin:20px 5px;}
@@ -1594,12 +1607,12 @@ div.menu:nth-child(1) {float:none;}
 .comments_sec h3 { width: 300px;}
 .books-nav { width:300px;}
 span.snetworks{ display:none;}
-#sharebox {width:300px;}
+
 .right { margin: 24px 0px 0px }
-.headerbg { height: 258px; }
+
 #menu li:hover > ul { display:none; }
 #menu ul { padding : 0px; margin: 44px 0 0 0;}
-#sharebox {width: 290px;}
+
 span.snetworks { display:none;}
 #search input[type="text"] { width: 150px; }
 #search input[type="text"]:focus { width: 165px; }
@@ -1670,7 +1683,7 @@ ul.related_post li a:nth-child(2) { height: 25px !important; padding: 0 !importa
 #single_cont {width:300px; margin-right:0; padding-right:0;}
 .header_menu ul li { display: inline-block; width: 144px; text-align: center; }
 #header .right { float: right; width: auto; }
-#header { padding: 6px 0px 20px; }
+#header { margin: 6px 0px 20px; }
 .head_social { position: absolute; width: 150px; margin: 126px 161px 0px 16px; }
 #menu_container { margin: 15px 0 0 9px; float: right; }
 #menu_container ul li { margin: 0 10px 0 0; font-size: 14px; }
@@ -1733,7 +1746,7 @@ h1.single_title { line-height: 1.5; }
 
 @media screen and (max-width: 370px) {
 
-#sharebox{ width:288px;}
+
 .homesb { height:20px;}
 span.snetworks{display:none;}
 #search { float:left; }
@@ -1752,7 +1765,7 @@ h1.logo {font-size:25px;}
 #header .left img { max-width: 300px; height: inherit; }
 #single_cont {width:300px; margin-right:0; padding-right:0;}
 #header .right { float: right; width: auto; }
-#header { padding: 6px 0px 20px; }
+#header { margin: 6px 0px 20px; }
 .header_menu ul li { display: inline-block; width: 144px; text-align: center; }
 .head_social { position: absolute; width: 150px; margin: 126px 161px 0px 16px; }
 #menu_container { margin: 15px 0 0 9px; float: right; }
