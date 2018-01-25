@@ -19,7 +19,7 @@ while (have_posts()) : the_post();
   ?>
   <div class="home_post_box<?php echo $box_type; ?>">
     <a href="<?php the_permalink(); ?>">
-      <?php the_post_thumbnail('home-image'); ?>
+      <?php the_post_thumbnail('list-image'); ?>
 
       <div class="home_post_text">
         <h3><?php the_title(); ?></h3>

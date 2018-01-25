@@ -74,7 +74,7 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 				</div><!--//post_right-->
 
 				<div class="post_left">
-				  <?php the_post_thumbnail(); ?>
+				  <?php the_post_thumbnail('single-image'); ?>
 				</div><!--//post_left-->
 
 		    <div class="book_details">
