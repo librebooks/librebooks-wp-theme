@@ -200,6 +200,39 @@ $wp_customize->add_setting(
 		'settings'   => 'librebooks_twt_account',
 		'type'       => 'text',
 ));
+
+$wp_customize->add_setting(
+        'librebooks_default_list_featured',
+        array(
+            'default'     => '',
+						'transport'   => 'postMessage',
+            'sanitize_callback' => 'esc_url',
+        )
+    );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'librebooks_default_list_featured', array(
+        'label'      => __('Site Default Book Cover For Books List', 'asalah'),
+				'description' => ('(should be around 306×410px)'),
+        'section'    => 'librebooks_site_info',
+        'settings'   => 'librebooks_default_list_featured',
+    )));
+
+$wp_customize->add_setting(
+        'librebooks_default_single_featured',
+        array(
+            'default'     => '',
+						'transport'   => 'postMessage',
+            'sanitize_callback' => 'esc_url',
+        )
+    );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'librebooks_default_single_featured', array(
+        'label'      => __('Site Default Book Cover For Single Page', 'asalah'),
+				'description' => ('(should be around 350×440px)'),
+        'section'    => 'librebooks_site_info',
+        'settings'   => 'librebooks_default_single_featured',
+    )));
+
 	$wp_customize->add_section( 'librebooks_custom_code' , array(
 		'title'      => __('Add Header/Footer Content','librebooks'),
 		'priority'   => 20,

@@ -741,7 +741,10 @@ h3.top_title, h1.top_title { font-family: 'Droid Arabic Naskh'; padding: 5px 0; 
 p.contactform_respons { color:red; font-size:30px; text-align:center; font-weight:bold;}
 
 /*books covers boxes*/
-.home_post_box { float: right; width: 306px; height: 410px; margin-left: 30px; margin-bottom: 30px; position: relative; cursor: pointer; -webkit-box-shadow: 0 0 3px 0 #c4c4c4; -moz-box-shadow: 0 0 3px 0 #c4c4c4; box-shadow: 0 0 3px 0 #c4c4c4; }
+.home_post_box { float: right; width: 306px; height: 410px; margin-left: 30px; margin-bottom: 30px; position: relative; cursor: pointer; -webkit-box-shadow: 0 0 3px 0 #c4c4c4; -moz-box-shadow: 0 0 3px 0 #c4c4c4; box-shadow: 0 0 3px 0 #c4c4c4;}
+.home_post_box .no_featured_image { width: 306px; height: 410px; line-height: 410px; box-shadow: 0px 0px 4px 0px rgb(204, 204, 204); color:#fff; background: none repeat scroll 0% 0% rgb(23, 130, 185);}
+.single .no_featured_image { width: 350px; height: 440px; line-height: 440px; margin: 5px; box-shadow: 0px 0px 4px 0px rgb(204, 204, 204); color:#fff; background: none repeat scroll 0% 0% rgb(23, 130, 185); }
+.no_featured_image span { font-size:2em; padding: 0 20px; text-align:center;  display: inline-block; vertical-align: middle; line-height: normal;}
 .home_post_box img { width: 306px; height: 410px; }
 
 .home_post_box a:hover { opacity:1;}

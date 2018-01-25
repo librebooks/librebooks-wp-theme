@@ -4,7 +4,7 @@ if (function_exists('add_theme_support')) {
 }
 if ( function_exists( 'add_theme_support' ) ) { // Added in 2.9
   add_theme_support( 'post-thumbnails' );
-  add_image_size('home-image',306,410,true);
+  add_image_size('list-image',306,410,true);
   add_image_size('single-image',350,440,true);
 }
 

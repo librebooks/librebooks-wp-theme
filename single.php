@@ -74,7 +74,15 @@ $release_no = get_post_meta($post->ID, 'custom_release_no', true);
 				</div><!--//post_right-->
 
 				<div class="post_left">
-				  <?php the_post_thumbnail('single-image'); ?>
+					<?php if (has_post_thumbnail()) {
+						the_post_thumbnail('single-image');
+					} elseif (get_theme_mod('librebooks_default_single_featured') != '') { ?>
+						<img width="350" height="232" src="<?php echo esc_url(get_theme_mod('librebooks_default_single_featured')); ?>" class="attachment-single-image size-single-image wp-post-image" alt="" sizes="(max-width: 350px) 100vw, 350px" />
+					<?php } else { ?>
+						<div class="no_featured_image">
+		          <span><?php echo get_the_title(); ?></span>
+		        </div>
+					<?php } ?>
 				</div><!--//post_left-->
 
 		    <div class="book_details">

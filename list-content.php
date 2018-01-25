@@ -19,7 +19,15 @@ while (have_posts()) : the_post();
   ?>
   <div class="home_post_box<?php echo $box_type; ?>">
     <a href="<?php the_permalink(); ?>">
-      <?php the_post_thumbnail('list-image'); ?>
+      <?php if (has_post_thumbnail()) { ?>
+        <?php the_post_thumbnail('list-image'); ?>
+      <?php } elseif (get_theme_mod('librebooks_default_list_featured') != '') { ?>
+        <img width="306" height="203" src="<?php echo esc_url(get_theme_mod('librebooks_default_list_featured')); ?>" class="attachment-list-image size-list-image wp-post-image" alt="" sizes="(max-width: 306px) 100vw, 306px">
+      <?php } else { ?>
+        <div class="no_featured_image">
+          <span><?php echo get_the_title(); ?></span>
+        </div>
+      <?php } ?>
 
       <div class="home_post_text">
         <h3><?php the_title(); ?></h3>
