@@ -11,10 +11,16 @@ jQuery(function(jQuery) {
         return false;
     });
 
-    jQuery('.repeatable-remove').click(function(){
-
-	jQuery(this).parent().remove();
+    jQuery('.repeatable-remove').click(function(e){
+      e.preventDefault();
+      if (jQuery('.repeatable_group:last').index() != jQuery('.repeatable_group:first').index()) {
+        jQuery(this).parent().remove();
         return false;
+      } else {
+        jQuery(this).parent().find('input').each( function() {
+          jQuery(this).val('');
+        });
+      }
 
     });
 
