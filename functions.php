@@ -133,7 +133,14 @@ function librebooks_scripts() {
 	wp_enqueue_script('jquery.infinitescroll');
 	wp_enqueue_script('librebooks_main_scripts');
 }
-
+add_action('admin_enqueue_scripts', 'theme_admin_scripts');
+function theme_admin_scripts() {
+    wp_register_style('librebooks_admin-css', get_template_directory_uri().'/admin-css.css', array(), '', 'all' );
+    wp_enqueue_style('librebooks_admin-css');
+    wp_register_script('librebooks_admin-js', get_template_directory_uri() . '/js/admin-js.js', array( 'jquery' ) );
+		wp_enqueue_script('librebooks_admin-js');
+		wp_enqueue_script('jquery-ui-sortable');
+}
 // Remove share buttons under post.
 // http://wordpress.org/support/topic/share-buttons-position-above-other-plugins
 function jptweak_remove_share() {
@@ -300,23 +307,6 @@ function add_custom_meta_box() {
 }
 add_action('add_meta_boxes', 'add_custom_meta_box');
 
-    // Field Array
-    $prefix = 'custom_';
-    $custom_meta_fields = array(
-        array(
-            'label'=> 'Release no.',
-            'desc'  => 'رقم الإصدارة',
-            'id'    => $prefix.'release_no',
-            'type'  => 'repeatable'
-        ),
-	array(
-            'label'=> 'Release URL',
-            'desc'  => 'رابط الإصدارة',
-            'id'    => $prefix.'release_url',
-            'type'  => 'repeatable'
-        )
-
-    );
 
 // The Callback
 function show_custom_meta_box() {
@@ -325,38 +315,110 @@ global $custom_meta_fields, $post;
 echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce(basename(__FILE__)).'" />';
 
     // Begin the field table and loop
-    echo '<table class="form-table">';
-    foreach ($custom_meta_fields as $field) {
-        // get value of this field if it exists for this post
-        $meta = get_post_meta($post->ID, $field['id'], true);
-        // begin a table row with
-        echo '<tr>
-                <th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
-                <td>';
 
-    echo '<a class="repeatable-add button" href="#">+</a>
-            <ul id="'.$field['id'].'-repeatable" class="custom_repeatable">';
-    $i = 0;
-    if ($meta) {
-        foreach($meta as $row) {
-            echo '<li><span class="sort hndle">|||</span>
-                        <input type="text" name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" value="'.$row.'" size="30" />
-                        <a class="repeatable-remove button" href="#">-</a></li>';
-            $i++;
-        }
-    } else {
-        echo '<li><span class="sort hndle">|||</span>
-                    <input type="text" name="'.$field['id'].'['.$i.']" id="'.$field['id'].'" value="" size="30" />
-                    <a class="repeatable-remove button" href="#">-</a></li>';
-    }
-    echo '</ul>
-        <span class="description">'.$field['desc'].'</span>';
 
-        echo '</td></tr>';
-    } // end foreach
-    echo '</table>'; // end table
+    echo '<div class="form-table repeatable_form post_options">';
+
+		$releaseNo = get_post_meta($post->ID, 'custom_release_no', true);
+		$releaseUrl = get_post_meta($post->ID, 'custom_release_url', true);
+
+		if ($releaseNo && is_array($releaseNo)) {
+			foreach ($releaseNo as $key => $value) {
+				echo '<div class="repeatable_group">';
+				echo '<div class="holder">|||</div>';
+				theme_post_options( array(
+						'name'=> 'Release no.',
+						'desc'  => 'رقم الإصدارة',
+						'id'    => 'custom_release_no[]',
+						'value' => $value,
+						'class' => 'release_no_item',
+						'type'  => 'repeatable_text'
+				));
+	    	theme_post_options( array(
+						'name'=> 'Release URL',
+						'desc'  => 'رابط الإصدارة',
+						'id'    => 'custom_release_url[]',
+						'value' => $releaseUrl[$key],
+						'class' => 'release_url_item',
+						'type'  => 'repeatable_text'
+				));
+				echo '<a class="repeatable-remove" href="#">'.__('حذف', 'LibreBooks').'</a>';
+				echo "</div>";
+			}
+		} else {
+			echo '<div class="repeatable_group">';
+			echo '<div class="holder">|||</div>';
+			theme_post_options( array(
+					'name'=> 'Release no.',
+					'desc'  => 'رقم الإصدارة',
+					'id'    => 'custom_release_no[]',
+					'value' => '',
+					'class' => 'release_no_item',
+					'type'  => 'repeatable_text'
+			));
+			theme_post_options( array(
+					'name'=> 'Release URL',
+					'desc'  => 'رابط الإصدارة',
+					'id'    => 'custom_release_url[]',
+					'value' => '',
+					'class' => 'release_url_item',
+					'type'  => 'repeatable_text'
+			));
+			echo '<a class="repeatable-remove" href="#">'.__('حذف', 'LibreBooks').'</a>';
+			echo "</div>";
+		}
+
+			echo '<a class="repeatable-add button" href="#">'.__('أضف جديد', 'LibreBooks').'</a>';
+
+    echo '</div>'; // end table
 }
+function theme_post_options($value){
+	global $post;
+?>
+	<div class="option-item<?php echo ' '.$value['class'] ?>" id="<?php echo $value['id'] ?>-item">
+		<span class="label"><?php  echo $value['name']; ?></span>
+		<span class="desc"><?php echo $value['desc']; ?></span>
+	<?php
+		$id = $value['id'];
+		$get_meta = get_post_custom($post->ID);
 
+		if( isset( $get_meta[$id][0] ) ){
+			$current_value = $get_meta[$id][0];
+		}else{
+			$current_value = '';
+		}
+
+	switch ( $value['type'] ) {
+
+		case 'text': ?>
+			<input  name="<?php echo $value['id']; ?>" id="<?php  echo $value['id']; ?>" type="text" value="<?php echo $current_value; ?>" />
+		<?php
+		break;
+
+		case 'repeatable_text': ?>
+			<input name="<?php echo $value['id']; ?>" id="<?php  echo $value['id']; ?>" type="text" value="<?php echo $value['value']; ?>" />
+		<?php
+		break;
+
+		case 'select':
+		?>
+			<select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
+				<?php foreach ($value['options'] as $key => $option) { ?>
+				<option value="<?php echo $key ?>" <?php if ( $current_value == $key) { echo ' selected="selected"' ; } ?>><?php echo $option; ?></option>
+				<?php } ?>
+			</select>
+		<?php
+		break;
+
+		case 'textarea':
+		?>
+			<textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>" type="<?php echo $value['type']; ?>" cols="" rows=""><?php echo $current_value ?></textarea>
+		<?php
+		break;
+	} ?>
+	</div>
+<?php
+}
     // Save the Data
     function save_custom_meta($post_id) {
         global $custom_meta_fields;
@@ -374,15 +436,18 @@ echo '<input type="hidden" name="custom_meta_box_nonce" value="'.wp_create_nonce
             } elseif (!current_user_can('edit_post', $post_id)) {
                 return $post_id;
         }
-
+				$custom_meta_fields = array(
+					'custom_release_no',
+					'custom_release_url'
+				);
         // loop through fields and save the data
         foreach ($custom_meta_fields as $field) {
-            $old = get_post_meta($post_id, $field['id'], true);
-            $new = $_POST[$field['id']];
+            $old = get_post_meta($post_id, $field, true);
+            $new = $_POST[$field];
             if ($new && $new != $old) {
-                update_post_meta($post_id, $field['id'], $new);
+                update_post_meta($post_id, $field, $new);
             } elseif ('' == $new && $old) {
-                delete_post_meta($post_id, $field['id'], $old);
+                delete_post_meta($post_id, $field, $old);
             }
         } // end foreach
     }

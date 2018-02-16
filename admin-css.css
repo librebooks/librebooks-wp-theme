@@ -1,0 +1,28 @@
+.repeatable_form .option-item {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 10px;
+}
+.repeatable_form .holder {
+    display: inline-block;
+    font-size: 20px;
+    cursor: -webkit-grab;
+}
+.repeatable_form .option-item.release_no_item {
+    width: 24%;
+}
+
+.repeatable_form .option-item input {
+    display: block;
+    margin-top: 5px;
+    width: 95%;
+}
+
+.repeatable_form .option-item.release_url_item {
+    width: 60%;
+}
+
+.repeatable_form .repeatable-remove {
+    color:red;
+    font-size: 12px;
+}
